@@ -49,11 +49,12 @@ This document serves as shared context for anyone working on the project. It cap
 - Sent via `Authorization` header
 
 ### JWT Payload
-```json```
+```
 {
   "userId": "uuid",
   "role": "ADMIN | MENTOR | MEMBER"
 }
+```
 
 ### JWT Details
 * **Payload intentionally minimal**
