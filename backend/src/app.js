@@ -6,7 +6,12 @@ const authRoutes = require("./routes/auth.routes");
 const app = express();
 
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: false,
+  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+}));
 app.use(express.json());
 
 // Inital route

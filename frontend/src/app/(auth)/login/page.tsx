@@ -30,7 +30,7 @@ export default function LoginPage() {
 
   const onSubmit = async (data: LoginForm) => {
     try {
-      const res = await api.post("/auth/login", data);
+      const res = await api.post("api/auth/login", data);
 
       login(res.data.token, res.data.user);
       router.push("/dashboard");
