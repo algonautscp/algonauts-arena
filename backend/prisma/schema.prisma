@@ -1,0 +1,142 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(MEMBER)
+
+  codeforcesHandle String?
+  leetcodeHandle   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  solves              ProblemSolve[]
+  members TeamMember[]
+  contestSubmissions  ContestSubmission[]
+}
+
+enum Role {
+  ADMIN
+  MENTOR
+  MEMBER
+}
+
+model Team {
+  id        String   @id @default(uuid())
+  name      String
+  contestId String
+
+  createdAt DateTime @default(now())
+
+  contest Contest @relation(fields: [contestId], references: [id], onDelete: Cascade)
+  members TeamMember[]
+  submissions ContestSubmission[]
+}
+
+model TeamMember {
+  id      String @id @default(uuid())
+  teamId  String
+  userId  String
+
+  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([teamId, userId])
+}
+
+
+model ProblemSolve {
+  id          String   @id @default(uuid())
+  userId      String
+  platform    Platform
+  problemUrl  String
+  difficulty  Difficulty?
+
+  solvedAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@unique([userId, problemUrl])
+}
+
+enum Platform {
+  CODEFORCES
+  CODECHEF
+  LEETCODE
+  ATCODER
+  OTHER
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model Contest {
+  id        String   @id @default(uuid())
+  name      String
+  startTime DateTime
+  endTime   DateTime
+  isTeamBased Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  problems     ContestProblem[]
+  submissions  ContestSubmission[]
+  teams        Team[]
+}
+
+
+model ContestProblem {
+  id        String   @id @default(uuid())
+  contestId String
+  problemUrl String
+  points    Int?
+
+  contest Contest @relation(fields: [contestId], references: [id], onDelete: Cascade)
+
+  @@index([contestId])
+}
+
+model ContestSubmission {
+  id        String   @id @default(uuid())
+  contestId String
+  userId    String?
+  teamId    String?
+  problemUrl String
+  status    SubmissionStatus
+
+  submittedAt DateTime @default(now())
+
+  contest Contest @relation(fields: [contestId], references: [id], onDelete: Cascade)
+  user    User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  team    Team?   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@index([contestId])
+}
+
+
+enum SubmissionStatus {
+  ACCEPTED
+  WRONG_ANSWER
+  TIME_LIMIT
+  RUN_TIME_ERROR
+  SKIPPED
+}
