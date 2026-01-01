@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
 import { Contest } from "@/types/contest";
-import Card from "@/components/ui/Card";
+import {Card} from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import Link from "next/link";
 
