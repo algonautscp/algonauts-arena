@@ -1,5 +1,5 @@
 import { Contest } from "@/types/contest";
-import Card from "@/components/ui/Card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import Link from "next/link";
 
@@ -15,7 +15,11 @@ export default function ContestListCard({
   contests: Contest[];
 }) {
   return (
-    <Card title="Contests">
+    <Card>
+      <CardHeader>
+        <CardTitle>Contests</CardTitle>
+      </CardHeader>
+      <CardContent>
       <div className="space-y-3">
         {contests.map((contest) => (
           <Link
@@ -31,6 +35,7 @@ export default function ContestListCard({
           </Link>
         ))}
       </div>
+      </CardContent>
     </Card>
   );
 }
