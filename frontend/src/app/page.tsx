@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/Card";
+import  {Card}  from "@/components/ui/Card";
 import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 
@@ -13,7 +13,14 @@ export default function HomePage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-16 min-h-screen flex items-center">
+      <section className="relative overflow-hidden pt-16 min-h-[76vh] flex items-center rounded-b-[15vh] z-20 bg-[#F9F5F1]">
+        {/* <div className="absolute inset-0 z-0">
+          <img 
+            src="https://i.pinimg.com/1200x/54/b8/67/54b867bf0d0130797fe67303b362651f.jpg" 
+            alt="Hero Background"
+            className="w-full h-full object-cover opacity-100 z-0" // Lower opacity to let the base color show through
+          />
+        </div> */}
         <div className="w-full px-6 sm:px-8 lg:px-12">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Column: Text + CTAs */}
@@ -29,8 +36,12 @@ export default function HomePage() {
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
               >
-                Master Algorithms.
-                <span className="block text-primary">Dominate Competition.</span>
+                <span className="whitespace-nowrap">
+                  <span>Master</span> Algorithms.
+                </span>
+                <span className="whitespace-nowrap block text-primary">
+                  Dominate <span>Competitions.</span>
+                </span>
               </motion.h1>
               
               <motion.p
@@ -49,13 +60,13 @@ export default function HomePage() {
                 className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               >
                 <Button size="lg" className="text-base px-8 py-3" asChild>
-                  <Link href="/signup">
+                  <Link href="/auth">
                     Get Started
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" className="text-base px-8 py-3" asChild>
-                  <Link href="/login">Login</Link>
+                  <Link href="/auth">Login</Link>
                 </Button>
               </motion.div>
             </motion.div>
@@ -74,7 +85,7 @@ export default function HomePage() {
                   rotate: [0, 2, 0],
                 }}
                 transition={{
-                  duration: 6,
+                  duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
@@ -153,8 +164,59 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section className="relative -mt-34 py-20 bg-[#FFFFFF] min-h-[60vh] flex items-end justify-center rounded-b-[15vh] z-10 shadow-sm">
+        <div className="w-full px-6 sm:px-8 lg:px-2">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="text-center mb-10"
+            >
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+                Building Momentum
+              </h2>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
+                Join a growing community of competitive programmers pushing their limits.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+              {[
+                { number: "25+", label: "Members" },
+                { number: "10+", label: "Contests" },
+                { number: "1,000+", label: "Problems Solved" },
+                { number: "50+", label: "Daily Active" }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: index * 0.1, 
+                    ease: "easeOut" 
+                  }}
+                  viewport={{ once: true }}
+                  className="text-center"
+                >
+                  <div className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-2">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm sm:text-base text-muted-foreground uppercase tracking-wider">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
-      <section className="py-24 sm:py-32 bg-muted/30">
+      <section className="py-30 sm:py-32 bg-muted h-[105vh] flex items-center -mt-34 z-0 bg-[linear-gradient(to_top_right,#601E06_0%,#9688BF_50%,#5F4F92_75%,#4D4077_100%)]">
         <div className="w-full px-6 sm:px-8 lg:px-12">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -246,7 +308,7 @@ export default function HomePage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-24 sm:py-32">
+      <section className="relative h-[70vh] flex items-center rounded-t-[15vh] bg-[#FFFFFF] -mt-32 z-10 py-24 sm:py-32 shadow-[0_-15px_30px_-5px_rgba(0,0,0,0.1)]">
         <div className="w-full px-6 sm:px-8 lg:px-12">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -300,57 +362,6 @@ export default function HomePage() {
                   <p className="text-muted-foreground text-lg max-w-sm mx-auto">
                     {step.description}
                   </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-24 sm:py-32 bg-muted/30">
-        <div className="w-full px-6 sm:px-8 lg:px-12">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true }}
-              className="text-center mb-20"
-            >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-                Building Momentum
-              </h2>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-                Join a growing community of competitive programmers pushing their limits.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-              {[
-                { number: "25+", label: "Members" },
-                { number: "10+", label: "Contests" },
-                { number: "1,000+", label: "Problems Solved" },
-                { number: "50+", label: "Daily Active" }
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: index * 0.1, 
-                    ease: "easeOut" 
-                  }}
-                  viewport={{ once: true }}
-                  className="text-center"
-                >
-                  <div className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm sm:text-base text-muted-foreground uppercase tracking-wider">
-                    {stat.label}
-                  </div>
                 </motion.div>
               ))}
             </div>

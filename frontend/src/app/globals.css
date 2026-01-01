@@ -1,40 +1,35 @@
 @import "tailwindcss";
 
+
 @layer base {
   :root {
-    /* Light Mode — Cool Technical (Clean, Sharp, Non-Neon) */
-    --background: 210 20% 98%;
-    --foreground: 222 40% 12%;
+    /* Background: Warm Cream */
+    --background: 80 40% 99%;
+    --foreground: 60 50% 10%;
 
-    --card: 210 20% 100%;
-    --card-foreground: 222 40% 12%;
+    /* Primary: Vibrant Teal (Used for Main Buttons & Links) */
+    --primary: 173 100% 43%;
+    --primary-foreground: 0 0% 100%;
 
-    --popover: 210 20% 100%;
-    --popover-foreground: 222 40% 12%;
+    /* Secondary: Hot Pink (Used for Accents & Hover Borders) */
+    --secondary: 349 100% 63%;
+    --secondary-foreground: 0 0% 100%;
 
-    /* Primary = cool technical blue (desaturated) */
-    --primary: 215 55% 52%;
-    --primary-foreground: 210 20% 98%;
+    /* Muted: Tan/Beige (Used for Section backgrounds) */
+    --muted: 40 16% 90%; 
+    --muted-foreground: 60 20% 30%;
 
-    --secondary: 210 25% 94%;
-    --secondary-foreground: 222 40% 12%;
+    /* Border: Dark Coffee (High contrast for buttons/cards) */
+    --border: 60 50% 10%;
+    --input: 60 50% 10%;
+    --ring: 173 100% 43%;
 
-    --muted: 210 25% 94%;
-    --muted-foreground: 215 15% 45%;
-
-    /* Accent used sparingly (same family as primary) */
-    --accent: 215 55% 52%;
-    --accent-foreground: 210 20% 98%;
-
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 210 20% 98%;
-
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 215 55% 52%;
-
-    --radius: 0.5rem;
+    --card: 0 0% 100%;
+    --card-foreground: 60 50% 1%;
+    
+    --radius: 0.75rem;
   }
+
 
   .dark {
     /* Dark Mode — Hacker Terminal (Neutral, Deep, Serious) */
@@ -74,10 +69,31 @@
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
+    /* Use the CSS variable directly instead of @apply to avoid the Tailwind error */
+    border-color: hsl(var(--border) / 1);
   }
+  
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Smooth transitions for theme switching */
+  * {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 100ms;
+  }
+  
+  /* Prevent transitions on specific elements that shouldn't animate */
+  .no-transition,
+  .no-transition *,
+  img,
+  video,
+  iframe {
+    transition: none !important;
   }
 }
+
+

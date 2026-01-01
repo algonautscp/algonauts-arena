@@ -6,7 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/Input";
+import  Input  from "@/components/ui/Input";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Eye, EyeOff, Github, Chrome } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
