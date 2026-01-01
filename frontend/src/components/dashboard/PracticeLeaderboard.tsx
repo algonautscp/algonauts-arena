@@ -1,5 +1,5 @@
 import { PracticeLeaderboardEntry } from "@/types/practice";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
+import Card from "@/components/ui/Card";
 
 export default function PracticeLeaderboard({
   data,
@@ -7,11 +7,7 @@ export default function PracticeLeaderboard({
   data: PracticeLeaderboardEntry[];
 }) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Practice Leaderboard</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <Card title="Practice Leaderboard">
       <table className="w-full text-sm">
         <thead>
           <tr className="text-left border-b border-slate-700">
@@ -33,7 +29,6 @@ export default function PracticeLeaderboard({
           ))}
         </tbody>
       </table>
-      </CardContent>
     </Card>
   );
 }

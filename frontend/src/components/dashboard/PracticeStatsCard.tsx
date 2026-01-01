@@ -1,5 +1,5 @@
 import { PracticeStats } from "@/types/practice";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
+import Card from "@/components/ui/Card";
 
 export default function PracticeStatsCard({
   stats,
@@ -7,11 +7,7 @@ export default function PracticeStatsCard({
   stats: PracticeStats;
 }) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Practice Stats</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <Card title="Practice Stats">
       <div className="space-y-2">
         <p>Total Solved: {stats.total}</p>
         <p className="text-green-400">
@@ -24,7 +20,6 @@ export default function PracticeStatsCard({
           HARD: {stats.breakdown.HARD}
         </p>
       </div>
-      </CardContent>
     </Card>
   );
 }
