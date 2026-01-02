@@ -27,12 +27,12 @@ export default function Navbar() {
     >
       <motion.nav
         animate={{
-          backgroundColor: scrolled ? "hsl(var(--background))" : "transparent",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
-          borderBottom: scrolled ? "1px solid hsl(var(--border))" : "none",
+          backgroundColor: scrolled ? "hsl(var(--background) / 0.8)" : "hsla(var(--background) / 0.1)",
+          backdropFilter: scrolled ? "blur(16px)" : "blur(8px)",
+          borderBottom: scrolled ? "1px solid hsl(var(--border))" : "1px solid hsla(var(--foreground) / 0.05)",
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="w-full transition-all duration-300"
+        className="w-full transition-all duration-200"
       >
         <div className="w-full px-6 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between h-16 max-w-7xl mx-auto">

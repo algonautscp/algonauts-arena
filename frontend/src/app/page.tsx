@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import  {Card}  from "@/components/ui/Card";
 import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
+import image from "../../assets/image.png";
 
 export default function HomePage() {
   return (
@@ -13,15 +14,13 @@ export default function HomePage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-16 min-h-[76vh] flex items-center rounded-b-[15vh] z-20 bg-[#F9F5F1]">
-        {/* <div className="absolute inset-0 z-0">
-          <img 
-            src="https://i.pinimg.com/1200x/54/b8/67/54b867bf0d0130797fe67303b362651f.jpg" 
-            alt="Hero Background"
-            className="w-full h-full object-cover opacity-100 z-0" // Lower opacity to let the base color show through
-          />
-        </div> */}
-        <div className="w-full px-6 sm:px-8 lg:px-12">
+      <section className="relative overflow-hidden pt-16 min-h-[76vh] flex items-center rounded-b-[15vh] z-20" style={{ backgroundColor: 'hsl(var(--hero-bg))' }}>
+        {/* Circle Element - Top Center (Half Visible) */}
+        <div className="absolute -top-[36vh] left-1/2 transform -translate-x-1/2 z-0">
+          <div className="relative w-[72vh] h-[72vh] rounded-full bg-gradient-to-br from-orange-500 via-red-500 via-fuchsia-500 to-blue-500 opacity-100 saturate-[2] brightness-125 z-0 blur-[80px]">
+          </div>
+        </div>
+        <div className="w-full px-6 sm:px-8 lg:px-12 z-10">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Column: Text + CTAs */}
             <motion.div
@@ -70,102 +69,41 @@ export default function HomePage() {
                 </Button>
               </motion.div>
             </motion.div>
-
-            {/* Right Column: Animated Visual */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="relative h-96 lg:h-full min-h-[400px] flex items-center justify-center"
-            >
-              {/* Floating Abstract Cards */}
-              <motion.div
-                animate={{
-                  y: [0, -20, 0],
-                  rotate: [0, 2, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute top-10 right-10 w-24 h-32 bg-primary/10 border border-primary/20 rounded-lg backdrop-blur-sm"
-              />
-              
-              <motion.div
-                animate={{
-                  y: [0, 15, 0],
-                  rotate: [0, -1, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-                className="absolute top-20 left-10 w-20 h-20 bg-secondary/50 border border-border rounded-lg backdrop-blur-sm"
-              />
-              
-              <motion.div
-                animate={{
-                  y: [0, -10, 0],
-                  rotate: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 2,
-                }}
-                className="absolute bottom-20 right-20 w-28 h-16 bg-muted/50 border border-border rounded-lg backdrop-blur-sm"
-              />
-              
-              <motion.div
-                animate={{
-                  y: [0, 12, 0],
-                  rotate: [0, -2, 0],
-                }}
-                transition={{
-                  duration: 7,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5,
-                }}
-                className="absolute bottom-10 left-20 w-16 h-24 bg-accent/20 border border-accent/30 rounded-lg backdrop-blur-sm"
-              />
-              
-              {/* Central Element */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.05, 1],
-                  rotate: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="w-32 h-32 bg-primary/15 border border-primary/30 rounded-2xl backdrop-blur-sm flex items-center justify-center"
-              >
-                <motion.div
-                  animate={{
-                    rotate: [0, 360],
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className="w-16 h-16 bg-primary/30 rounded-lg"
-                />
-              </motion.div>
-            </motion.div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="absolute top-0 left-1/2 h-96 lg:h-full min-h-[500px] lg:min-h-[700px] w-full z-0"
+          >
+            <div className="absolute inset-0 z-0"> 
+              <div className="relative w-full h-full">
+                <div className="absolute inset-0 overflow-hidden">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
+                    style={{
+                      backgroundImage: `url(${image.src || image})`,
+                      WebkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 10% 100%)',
+                      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 10% 100%)'
+                    }}
+                  />
+                  <div 
+                    className="absolute inset-0 bg-black/20"
+                    style={{
+                      WebkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 10% 100%)',
+                      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 10% 100%)'
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="relative -mt-34 py-20 bg-[#FFFFFF] min-h-[60vh] flex items-end justify-center rounded-b-[15vh] z-10 shadow-sm">
+      <section className="relative -mt-34 py-20 min-h-[60vh] flex items-end justify-center rounded-b-[15vh] z-10 shadow-sm" style={{ backgroundColor: 'hsl(var(--stats-bg))' }}>
         <div className="w-full px-6 sm:px-8 lg:px-2">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -216,7 +154,7 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-30 sm:py-32 bg-muted h-[105vh] flex items-center -mt-34 z-0 bg-[linear-gradient(to_top_right,#601E06_0%,#9688BF_50%,#5F4F92_75%,#4D4077_100%)]">
+      <section className="py-30 sm:py-32 bg-muted h-[105vh] flex items-center -mt-34 z-0" style={{ backgroundImage: 'var(--features-gradient)' }}>
         <div className="w-full px-6 sm:px-8 lg:px-12">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -308,7 +246,7 @@ export default function HomePage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="relative h-[70vh] flex items-center rounded-t-[15vh] bg-[#FFFFFF] -mt-32 z-10 py-24 sm:py-32 shadow-[0_-15px_30px_-5px_rgba(0,0,0,0.1)]">
+      <section className="relative h-[70vh] flex items-center rounded-t-[15vh] -mt-32 z-10 py-24 sm:py-32 shadow-[0_-15px_30px_-5px_rgba(0,0,0,0.1)]" style={{ backgroundColor: 'hsl(var(--how-it-works-bg))' }}>
         <div className="w-full px-6 sm:px-8 lg:px-12">
           <div className="max-w-6xl mx-auto">
             <motion.div

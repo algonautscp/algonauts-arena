@@ -3,9 +3,9 @@
 
 @layer base {
   :root {
-    /* Background: Warm Cream */
-    --background: 80 40% 99%;
-    --foreground: 60 50% 10%;
+    --background: 30 33% 96%; 
+  /* Deep Coffee/Brown for the text to match the warm cream */
+    --foreground: 30 30% 10%;
 
     /* Primary: Vibrant Teal (Used for Main Buttons & Links) */
     --primary: 173 100% 43%;
@@ -28,42 +28,47 @@
     --card-foreground: 60 50% 1%;
     
     --radius: 0.75rem;
+
+    /* Custom Section Backgrounds */
+    --hero-bg: 30 70% 96%;
+    --stats-bg: 0 0% 100%;
+    --features-gradient: linear-gradient(to top right, #601E06 0%, #9688BF 50%, #5F4F92 75%, #4D4077 100%);
+    --how-it-works-bg: 30 70% 96%;
   }
 
 
   .dark {
-    /* Dark Mode — Hacker Terminal (Neutral, Deep, Serious) */
-    --background: 222 25% 8%;
-    --foreground: 210 20% 96%;
+    /* Background: Warm Cream Dark */
+    --background: 30 20% 8%;
+    --foreground: 80 40% 95%;
 
-    --card: 222 25% 11%;
-    --card-foreground: 210 20% 96%;
+    /* Primary: Vibrant Teal (Used for Main Buttons & Links) */
+    --primary: 173 100% 43%;
+    --primary-foreground: 0 0% 100%;
 
-    --popover: 222 25% 11%;
-    --popover-foreground: 210 20% 96%;
+    /* Secondary: Hot Pink (Used for Accents & Hover Borders) */
+    --secondary: 349 100% 63%;
+    --secondary-foreground: 0 0% 100%;
 
-    /* Primary = muted hacker green (NOT neon) */
-    --primary: 142 45% 42%;
-    --primary-foreground: 222 25% 8%;
+    /* Muted: Tan/Beige (Used for Section backgrounds) */
+    --muted: 40 16% 20%; 
+    --muted-foreground: 80 20% 70%;
 
-    --secondary: 222 20% 16%;
-    --secondary-foreground: 210 20% 96%;
+    /* Border: Dark Coffee (High contrast for buttons/cards) */
+    --border: 80 40% 95%;
+    --input: 80 40% 95%;
+    --ring: 173 100% 43%;
 
-    --muted: 222 20% 16%;
-    --muted-foreground: 215 12% 65%;
+    --card: 40 20% 12%;
+    --card-foreground: 80 40% 95%;
+    
+    --radius: 0.75rem;
 
-    /* Accent = restrained amber for emphasis only */
-    --accent: 38 70% 48%;
-    --accent-foreground: 222 25% 8%;
-
-    --destructive: 0 55% 42%;
-    --destructive-foreground: 210 20% 96%;
-
-    --border: 222 20% 18%;
-    --input: 222 20% 18%;
-    --ring: 142 45% 42%;
-
-    --radius: 0.5rem;
+    /* Custom Section Backgrounds */
+    --hero-bg: 40 20% 8%;
+    --stats-bg: 40 20% 12%;
+    --features-gradient: linear-gradient(to top right, #601E06 0%, #9688BF 50%, #5F4F92 75%, #4D4077 100%);
+    --how-it-works-bg: 40 20% 12%;
   }
 }
 
