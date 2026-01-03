@@ -209,7 +209,7 @@ export default function QuestionBank() {
                             value={currentStatus || ""}
                             onChange={(e) => {
                               if (e.target.value && e.target.value !== currentStatus) {
-                                handleStatusChange(question.id, e.target.value as string);
+                                handleStatusChange(question.id, e.target.value as "SOLVED" | "WA" | "TLE" | "RTE");
                               }
                             }}
                             className="px-3 py-1 border rounded text-sm bg-background"
