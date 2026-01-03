@@ -17,7 +17,7 @@ export default function ContestsPage() {
   const [contests, setContests] = useState<Contest[]>([]);
 
   useEffect(() => {
-    api.get("/contests").then((res) => setContests(res.data));
+    api.get("/api/contests").then((res) => setContests(res.data));
   }, []);
 
   return (

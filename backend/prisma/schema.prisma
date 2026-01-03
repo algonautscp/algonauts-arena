@@ -28,6 +28,15 @@ model User {
   solves              ProblemSolve[]
   members TeamMember[]
   contestSubmissions  ContestSubmission[]
+  practiceGoals       PracticeGoal[]
+  mentorNotes         MentorNote[] @relation("MentoredNotes")
+  mentoredNotes       MentorNote[] @relation("ReceivedNotes")
+  
+  // Practice feature relations
+  createdTopics       PracticeTopic[] @relation("CreatedTopics")
+  suggestedQuestions  PracticeQuestion[] @relation("SuggestedQuestions")
+  approvedQuestions   PracticeQuestion[] @relation("ApprovedQuestions")
+  practiceAttempts    PracticeAttempt[] @relation("PracticeAttempts")
 }
 
 enum Role {
@@ -64,8 +73,10 @@ model ProblemSolve {
   id          String   @id @default(uuid())
   userId      String
   platform    Platform
+  problemName String
   problemUrl  String
   difficulty  Difficulty?
+  source      Source   @default(USER_ADDED)
 
   solvedAt    DateTime @default(now())
 
@@ -87,6 +98,11 @@ enum Difficulty {
   EASY
   MEDIUM
   HARD
+}
+
+enum Source {
+  USER_ADDED
+  IMPORTED
 }
 
 model Contest {
@@ -139,4 +155,88 @@ enum SubmissionStatus {
   TIME_LIMIT
   RUN_TIME_ERROR
   SKIPPED
+}
+
+model PracticeGoal {
+  id            String    @id @default(uuid())
+  userId        String
+  weeklyTarget  Int
+  minDifficulty Difficulty
+  createdAt     DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@unique([userId])
+}
+
+model MentorNote {
+  id        String   @id @default(uuid())
+  mentorId  String
+  userId    String
+  content   String
+  createdAt DateTime @default(now())
+
+  mentor User @relation("MentoredNotes", fields: [mentorId], references: [id], onDelete: Cascade)
+  user   User @relation("ReceivedNotes", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([mentorId])
+}
+
+// Practice Topics
+model PracticeTopic {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  createdById String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  createdBy User       @relation("CreatedTopics", fields: [createdById], references: [id], onDelete: Cascade)
+  questions PracticeQuestion[]
+
+  @@index([createdById])
+}
+
+// Practice Questions
+model PracticeQuestion {
+  id          String   @id @default(uuid())
+  topicId     String
+  name        String
+  url         String   @unique
+  platform    String?
+  difficulty  String?
+  suggestedBy String?  // User ID who suggested this question
+  approvedBy  String?  // User ID who approved this question
+  status      String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  topic     PracticeTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  attempts  PracticeAttempt[]
+  suggested User?         @relation("SuggestedQuestions", fields: [suggestedBy], references: [id], onDelete: SetNull)
+  approved  User?         @relation("ApprovedQuestions", fields: [approvedBy], references: [id], onDelete: SetNull)
+
+  @@index([topicId])
+  @@index([status])
+  @@index([suggestedBy])
+  @@index([approvedBy])
+}
+
+// Practice Attempts
+model PracticeAttempt {
+  id         String   @id @default(uuid())
+  userId     String
+  questionId String
+  status     String   // SOLVED, WA, TLE, RTE
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user     User            @relation("PracticeAttempts", fields: [userId], references: [id], onDelete: Cascade)
+  question PracticeQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionId]) // Only one attempt per user per question
+  @@index([userId])
+  @@index([questionId])
 }

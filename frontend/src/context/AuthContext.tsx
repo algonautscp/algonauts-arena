@@ -10,6 +10,7 @@ export type User = {
   name: string;
   email: string;
   role: Role;
+  codeforcesUsername?: string;
 };
 
 type AuthContextType = {
@@ -18,6 +19,7 @@ type AuthContextType = {
   isAuthenticated: boolean;
   login: (token: string, user: User) => void;
   logout: () => void;
+  updateProfile: (updates: Partial<User>) => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(
@@ -61,6 +63,14 @@ export function AuthProvider({
     setAuth({ token: jwt, user: userData });
   };
 
+  const updateProfile = (updates: Partial<User>) => {
+    if (!user) return;
+    
+    const updatedUser = { ...user, ...updates };
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+    setAuth({ token, user: updatedUser });
+  };
+
   const logout = () => {
     localStorage.clear();
     setAuth({ token: null, user: null });
@@ -75,6 +85,7 @@ export function AuthProvider({
         isAuthenticated: Boolean(user),
         login,
         logout,
+        updateProfile,
       }}
     >
       {children}
