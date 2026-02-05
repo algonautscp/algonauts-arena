@@ -1,4 +1,4 @@
-# 🚀 Algonauts — Competitive Programming Club Platform
+# Algonauts — Competitive Programming Club Platform
 
 Algonauts is a **full-stack competitive programming club platform** built for **internal college use (20–25 users)**, with a clean architecture designed to scale to **public use later**.
 
@@ -6,9 +6,9 @@ The project is **feature-complete for v1** and focuses on correctness, extensibi
 
 ---
 
-## ✨ Features Overview
+## Features Overview
 
-### 🔐 Authentication & Roles
+### Authentication & Roles
 - JWT-based authentication
 - Role-based access control (RBAC)
 - Roles:
@@ -23,7 +23,7 @@ JWT payload contains **only**:
   "role": "ADMIN | MENTOR | MEMBER"
 }
 ```
-## 📘 Practice Tracker
+## Practice Tracker
 - Automatic Codeforces sync  
 - Idempotent sync (no duplicate problems)  
 - Difficulty-based stats:
@@ -34,7 +34,7 @@ JWT payload contains **only**:
 
 ---
 
-## 🏁 Contest System
+## Contest System
 - Individual and Team contests  
 - Manual problem links (CF / LC / any URL)  
 - Contest statuses:
@@ -48,7 +48,7 @@ JWT payload contains **only**:
 
 ---
 
-## 👥 Team Contests (Admin-managed)
+## Team Contests (Admin-managed)
 - Admin creates teams  
 - Admin assigns members  
 - One team per user per contest  
@@ -56,7 +56,7 @@ JWT payload contains **only**:
 
 ---
 
-## 🛠 Admin Panel
+## Admin Panel
 - Create contests  
 - Add problems  
 - Create teams  
@@ -65,7 +65,7 @@ JWT payload contains **only**:
 
 ---
 
-## 🧱 Tech Stack
+## Tech Stack
 
 ### Backend
 - Node.js  
@@ -85,7 +85,7 @@ JWT payload contains **only**:
 
 ---
 
-## 🌐 Backend API (Final & Locked)
+## Backend API (Final & Locked)
 
 ### Base URL
 ```http://localhost:5001```
@@ -110,7 +110,7 @@ Response (login & signup):
 
 ---
 
-## 📘 Practice Routes
+## Practice Routes
 
 ### User
 - POST /api/practice/sync/codeforces  
@@ -129,7 +129,7 @@ Stats response:
 
 ---
 
-## 🏁 Contest Routes
+## Contest Routes
 
 ### All users
 - GET /api/contests  
@@ -146,13 +146,13 @@ Backend automatically decides whether the contest is **user-based or team-based*
 
 ---
 
-## 👥 Team Routes (Admin only)
+## Team Routes (Admin only)
 - POST /api/contests/:contestId/teams  
 - POST /api/contests/teams/:teamId/members  
 
 ---
 
-## 🖥 Frontend Architecture
+## Frontend Architecture
 
 src/  
 ├── app/  
@@ -181,7 +181,7 @@ src/
 
 ---
 
-## 🔁 Practice Sync UX (Important)
+## Practice Sync UX (Important)
 
 - User clicks **Sync Codeforces**
 - Frontend calls POST /practice/sync/codeforces
@@ -199,7 +199,7 @@ This design is future-proof for:
 
 ---
 
-## ⚙️ Environment Setup
+## Environment Setup
 
 ### Frontend (.env.local)
 - NEXT_PUBLIC_API_BASE_URL = http://localhost:5001  
@@ -210,7 +210,7 @@ This design is future-proof for:
 
 ---
 
-## ▶️ Running Locally
+## Running Locally
 
 ### Backend
 - npm install  
@@ -220,51 +220,6 @@ This design is future-proof for:
 ### Frontend
 - npm install  
 - npm run dev  
-
----
-
-## 🚀 Deployment (Planned)
-
-- Frontend: Vercel  
-- Backend: Render / Railway  
-- Database: Managed PostgreSQL  
-- Prisma migrations run on deploy  
-- HTTPS + CORS configured for production  
-
-A detailed deployment guide will be added during final polishing.
-
----
-
-## 🎯 Current Status
-
-- ✅ Backend complete  
-- ✅ Frontend core complete  
-- ✅ Auth, practice, contests, admin panel implemented  
-
-### 🔧 Final polishing in progress
-- Navbar & logout  
-- Loading / empty states  
-- Team management UI polish  
-- Deployment hardening  
-
----
-
-## 🧠 Design Principles
-
-- Backend is the **source of truth**
-- Frontend is a **thin adapter**
-- No over-engineering
-- Clean abstractions
-- Easy to extend  
-
----
-
-## 📌 License / Usage
-
-Internal college project — educational use.  
-Designed to be safely extensible for public deployment later.
-
----
 
 **Algonauts — Build. Solve. Compete.**
 
