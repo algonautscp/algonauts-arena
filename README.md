@@ -93,7 +93,7 @@ JWT payload contains **only**:
 
 ---
 
-## 🔑 Auth Routes
+## Auth Routes
 
 ### POST /api/auth/login
 Request body:
